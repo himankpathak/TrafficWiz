@@ -2,12 +2,13 @@ import cv2
 import argparse
 import numpy as np
 
-videopath = "traffic3.mp4"
+videopath = "videos/traffic3.mp4"
 
-fweightpath = "yolov3.weights"
-fclasspath = "yolov3.txt"
-fconfigpath = "yolov3.cfg"
+fweightpath = "models/yolov3.weights"
+fclasspath = "models/yolov3.txt"
+fconfigpath = "models/yolov3.cfg"
 
+vcount=0
 classes = None
 COLORS = None
 
@@ -37,11 +38,13 @@ def get_output_layers(net):
 
 def draw_prediction(img, class_id, confidence, x, y, x_plus_w, y_plus_h,isfull=True):
 
+	global vcount
 	label = str(classes[class_id])
 
 	#color = COLORS[class_id]
 	if isfull:
 		color = getCustomColor(class_id)
+		vcount+=1
 	else:
 		color = (150,200,40)
 
@@ -110,6 +113,8 @@ def yolo(image,wpath,clpath,conpath,conf_threshold = 0.5):
 
 
 def process(frame):
+	global vcount
+	vcount=0
 	img = frame;
 	full = yolo(frame,fweightpath,fclasspath,fconfigpath)
 	img = draw_indices(frame,full)
@@ -124,6 +129,7 @@ def main():
 		ret, frame = cap.read()
 		abcd = process(frame)
 
+		cv2.putText(abcd,str(vcount),(1650,1020), cv2.FONT_HERSHEY_SIMPLEX, 4,(255,255,255),4,cv2.LINE_AA)
 		abcd = cv2.pyrDown(abcd)
 		cv2.imshow('frame',abcd)
 

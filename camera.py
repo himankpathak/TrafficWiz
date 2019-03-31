@@ -18,11 +18,11 @@ class VideoCamera(object):
         self.new = True;
         success, image = self.video.read()
         image = callback(image)
-        self.curimage = image;
-        print(image.shape)
-        if first is True:
-            first = False
-            self.start_record();
+        # self.curimage = image;
+        # print(image.shape)
+        # if first is True:
+        #     first = False
+        #     self.start_record();
         ret, jpeg = cv2.imencode('.jpg', image)
         self.new = False
         return jpeg.tobytes()

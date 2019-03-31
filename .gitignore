@@ -106,3 +106,4 @@ venv.bak/
 # models and videos
 models/
 videos/
+static/compare*

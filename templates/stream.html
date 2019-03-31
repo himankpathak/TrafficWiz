@@ -52,10 +52,14 @@
   <div class="cd-section" id="headers">
   <div class="container" style="padding-top:5vh;">
     <h1 style="color:#b3e5fc;font-weight:400;">Streaming Video</h1>
-    <div class="row" style="padding:2vh;">
+    <div class="row" style="padding-top:4vh;padding-bottom:4vh;">
       <div class="col s12">
         <img style="width:60vw;" id="video" src="{{ url_for('video_feed') }}">
       </div>
+
+      <div class="col s12" style="max-height:70vh;overflow:auto" id="listed">
+      </div>
+
     </div>
     <div class="row">
       <div class="col s4">
@@ -76,6 +80,25 @@
   <script src="/static/assets/js/bootstrap.min.js" type="text/javascript"></script>
   <script src="/static/assets/js/paper-kit.js?v=2.0.1"></script>
 
+<script>
+function fetchdata(){
+ $.ajax({
+  url: '{{url_for("cullp")}}',
+  type: 'get',
+  success: function(response){        {% for elem in culprits %}
+          <p>Law breaker detected at : {{elem}}</p></br>
+        {% endfor %}
+   // Perform operation on the return value
+   console.log(response)
+   document.getElementById('listed').innerHTML=response.data;
+  }
+ });
+}
+
+$(document).ready(function(){
+ setInterval(fetchdata,5000);
+});;
+</script>
   <script>
     function reply(data)
     {

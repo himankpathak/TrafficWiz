@@ -1,5 +1,5 @@
 import main, ocrTesseract
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response,jsonify
 from camera import VideoCamera
 from ImageLoader import ImageLoader
 import camera
@@ -38,7 +38,11 @@ def play():
 
 @app.route('/stream')
 def stream():
-    return render_template('stream.html',value=str(main.getVcount()))
+    return render_template('stream.html')
+
+@app.route('/cullp')
+def cullp():
+    return jsonify({'data': render_template('culprit.html', culprits = main.getCulprits())});
 
 @app.route('/compare')
 def compare():

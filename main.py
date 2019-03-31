@@ -15,13 +15,14 @@ hconfigpath = "models/helmet/yolov3-obj.cfg"
 vcount=0
 classes = None
 COLORS = None
+culprits=[]
 def readfromframe(vid,frame):
 	_,t = vid.read();
 	vid.set(cv2.CAP_PROP_POS_FRAMES, frame)
 
 def getCustomColor(classid):
 	global vcount
-	
+
 	if classid == 0:        #person
 		return (0,255,0)
 	elif classid == 1:      #bicycle
@@ -214,6 +215,7 @@ def isonBike(man,bikes):
 def process(frame):
 	global vcount
 	global classes
+	global culprits
 	vcount=0
 	img = frame;
 	full = yolo(frame,fweightpath,fclasspath,fconfigpath)
@@ -227,6 +229,7 @@ def process(frame):
 			hel = ishelmetpresent(p)
 			if(hel==False):
 				cv2.rectangle(frame, (x,y), (x+w,y+h), (0,0,255), 2)
+				culprits.append([x,y])
 			else:
 				cv2.rectangle(frame, (x,y), (x+w,y+h), (255,0,0), 2)
 		else:
@@ -237,6 +240,11 @@ def process(frame):
 	img = draw_indices(frame,full,classes)
 	cv2.putText(frame,str(vcount),(1700,1050), cv2.FONT_HERSHEY_SIMPLEX, 4,(255,255,255),4,cv2.LINE_AA)
 	return img
+
+def getCulprits():
+	global culprits
+	print(culprits)
+	return culprits;
 
 def getVcount():
 	global vcount

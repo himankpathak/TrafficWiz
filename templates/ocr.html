@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <link href="/static/assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/static/assets/css/paper-kit.css?v=2.0.1" rel="stylesheet"/>
+  <link href="/static/assets/css/styles.css" rel="stylesheet" />
+
+  <!--   Fonts and icons   -->
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,300,700' rel='stylesheet' type='text/css'>
+  <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+  <link href="/static/assets/css/nucleo-icons.css" rel="stylesheet">
+
+  <title>TrafficWiz | Streaming Video</title>
+  <script src="{{ url_for('static', filename='player.js') }}"></script>
+</head>
+<body style="background-color:#34495e;">
+  <nav class="navbar navbar-toggleable-md fixed-top nav-down" >
+    <div class="container">
+      <div class="navbar-translate">
+        <button class="navbar-toggler navbar-toggler-right navbar-burger" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar"></span>
+          <span class="navbar-toggler-bar"></span>
+          <span class="navbar-toggler-bar"></span>
+        </button>
+        <div class="navbar-header">
+          <a class="customfont" style="font-size:3rem;color:#66615B;font-weight:400;" href="/">TrafficWiz</a>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+					<li class="nav-item dropdown dropdown-danger">
+						<a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown">Latest News</a>
+						<ul class="dropdown-menu dropdown-menu-right">
+	            <li class="dropdown-item"><a href="#"><i class="nc-icon nc-tile-56"></i>&nbsp; View Challans</a></li>
+	            <li class="dropdown-item"><a href="/compare"><i class="nc-icon nc-bullet-list-67"></i>&nbsp; How to use</a></li>
+	          </ul>
+					</li>
+          <li class="nav-item">
+            <a class="nav-link" href="/#contact-us" data-scroll="true">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-round btn-danger" href="/stream"><i class="fa fa-car"></i> Stream Now</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="cd-section" id="headers">
+  <div class="container" style="padding-top:5vh;">
+    <h1 style="color:#b3e5fc;font-weight:400;">Vehicle Plate OCR</h1>
+    <div class="row" style="padding:2vh;">
+      <div class="col col-sm">
+        <img id="img1" style="width:22vw;" src="./static/testData/test2.jpg">
+      </div>
+      <div class="col col-sm">
+        <img id="img2" style="width:40vw;padding:2vh;" src="./static/testProc/test2_detect.jpg">
+      </div>
+      <div class="col col-sm">
+        <img id="img3" style="width:20vw;padding:2vh;" src="./static/testProc/test2_plate.jpg">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s4">
+        <button class="btn btn-primary" type="button" onclick=prev()>Prev</button>
+      </div>
+      <div class="col s4">
+        <button class="btn btn-warning" type="button" onclick=next()>Next</button>
+      </div>
+    </div>
+
+  </div>
+  </div>
+
+  <!-- Core JS Files -->
+  <script src="/static/assets/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+  <script src="/static/assets/js/jquery-ui-1.12.1.custom.min.js" type="text/javascript"></script>
+  <script src="/static/assets/js/tether.min.js" type="text/javascript"></script>
+  <script src="/static/assets/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="/static/assets/js/paper-kit.js?v=2.0.1"></script>
+  <script>
+    var img=2
+    function next(){
+      if(img==8){
+        img=1
+      }
+      img+=1;
+      document.getElementById("img1").src="./static/testData/test"+img+".jpg";
+      document.getElementById("img2").src="./static/testProc/test"+img+"_detect.jpg";
+      document.getElementById("img3").src="./static/testProc/test"+img+"_plate.jpg";
+    }
+    function prev(){
+      if(img==1){
+        img=8
+      }
+      img-=1;
+      document.getElementById("img1").src="./static/testData/test"+img+".jpg";
+      document.getElementById("img2").src="./static/testProc/test"+img+"_detect.jpg";
+      document.getElementById("img3").src="./static/testProc/test"+img+"_plate.jpg";
+    }
+</script>
+</body>
+</html>

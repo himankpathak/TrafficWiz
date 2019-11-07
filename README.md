@@ -12,3 +12,14 @@ TrafficWiz is an unlawful traffic activity detection and monitoring system. Vide
 
 Use Anaconda as a package manager to easily set up the environment before running the application.
 
+## Setup
+
+Download the model [weights](https://drive.google.com/file/d/1OElmPFZOKx90K2qmcoCHGviG_lq316el/view) and place the models folder in the root directory.
+Download the [static](https://drive.google.com/file/d/1xemdHTKmo86I2fePn9piGmJuVz3U0me0/view) files and place the static folder in the root directory.
+
+## Running the app
+
+- Make sure you have models and static folder in the root directory
+- Start the flask server with `$ python app.py` in the root folder of the project
+- Navigate to `localhost:5000`
+

@@ -2,7 +2,7 @@ import cv2
 import argparse
 import numpy as np
 
-videopath = "videos/traffic3.mp4"
+videopath = "static/videos/traffic2.mp4"
 
 fweightpath = "models/yolov3.weights"
 fclasspath = "models/yolov3.txt"
@@ -17,7 +17,7 @@ classes = None
 COLORS = None
 culprits=[]
 def readfromframe(vid,frame):
-	_,t = vid.read();
+	_,t = vid.read()
 	vid.set(cv2.CAP_PROP_POS_FRAMES, frame)
 
 def getCustomColor(classid):

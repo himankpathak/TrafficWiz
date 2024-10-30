@@ -1,5 +1,7 @@
 # TrafficWiz
 
+![Processing footage screen](media/processing-optimized.gif)
+
 TrafficWiz is an unlawful traffic activity detection and monitoring system. Video footage from street cameras is directly processed by TrafficWiz using OpenCV with YOLO. Culprits detected in the footage are then issued challan/fine automatically by reading the number plates of the vehicle using pytesseract.
 
 ## Requirements
@@ -23,3 +25,8 @@ Download the [static](https://drive.google.com/file/d/1xemdHTKmo86I2fePn9piGmJuV
 - Start the flask server with `$ python app.py` in the root folder of the project
 - Navigate to `localhost:5000`
 
+## Screenshots
+
+![Streaming footage screen](media/streaming-optimized.gif)
+
+![OCR screen](media/ocr-optimized.jpg)
